@@ -1,0 +1,125 @@
+package com.company;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.BufferedReader;
+import javax.swing.*;
+public class Main {
+
+    public static void main(String[] args) {
+	GUI oop = new GUI();
+	oop.setVisible(true);
+    }
+}
+class GUI extends JFrame{
+    //Создаем кнопку которую можно будет нажать
+    private JButton button = new JButton("Получить список");
+    //Создаем поля с названиями продуктов
+    private JLabel label1 = new JLabel("Хлеб");
+    private JLabel label2 = new JLabel("Яйца");
+    private JLabel label3 = new JLabel("Молоко");
+    private JLabel label4 = new JLabel("Мука");
+    private JLabel label5 = new JLabel("Чай");
+    private JLabel label6 = new JLabel("Пельмени");
+    private JLabel label7 = new JLabel("Кола");
+    //Создаем кнопки которые позволяют выбрат что-то одно
+    private JRadioButton choice1 =new JRadioButton("Купил");
+    private JRadioButton choice2 = new JRadioButton("Не купил");
+    private JRadioButton choice3 =new JRadioButton("Купил");
+    private JRadioButton choice4 = new JRadioButton("Не купил");
+    private JRadioButton choice5 =new JRadioButton("Купил");
+    private JRadioButton choice6 = new JRadioButton("Не купил");
+    private JRadioButton choice7 =new JRadioButton("Купил");
+    private JRadioButton choice8 = new JRadioButton("Не купил");
+    private JRadioButton choice9 =new JRadioButton("Купил");
+    private JRadioButton choice10 = new JRadioButton("Не купил");
+    private JRadioButton choice11 =new JRadioButton("Купил");
+    private JRadioButton choice12 = new JRadioButton("Не купил");
+    private JRadioButton choice13 =new JRadioButton("Купил");
+    private JRadioButton choice14 = new JRadioButton("Не купил");
+
+
+    public GUI () {
+        //Создаем конструктор
+        super("Список продуктов");//Название окна, которое будет выводится
+        this.setBounds(0,0 ,500,700);//Размеры окна
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        Container container =this.getContentPane();//Контейнер в который мы будем помещать все наши поля
+        container.setLayout(new GridLayout(8,8,2,2));//кнопки и т.д.
+        //Поочередно добавляем поля и кнопки с выбором
+        container.add(label1);
+        ButtonGroup group1 = new ButtonGroup();
+        group1.add(choice1);
+        group1.add(choice2);
+        container.add(choice1);
+        choice1.setSelected(true);
+        container.add(choice2);
+
+        container.add(label2);
+        ButtonGroup group2 = new ButtonGroup();
+        group2.add(choice3);
+        group2.add(choice4);
+        container.add(choice3);
+        choice3.setSelected(true);
+        container.add(choice4);
+
+        container.add(label3);
+        ButtonGroup group3 = new ButtonGroup();
+        group3.add(choice5);
+        group3.add(choice6);
+        container.add(choice5);
+        choice5.setSelected(true);
+        container.add(choice6);
+
+        container.add(label4);
+        ButtonGroup group4 = new ButtonGroup();
+        group4.add(choice7);
+        group4.add(choice8);
+        container.add(choice7);
+        choice7.setSelected(true);
+        container.add(choice8);
+
+        container.add(label5);
+        ButtonGroup group5 = new ButtonGroup();
+        group5.add(choice9);
+        group5.add(choice10);
+        container.add(choice9);
+        choice9.setSelected(true);
+        container.add(choice10);
+
+        container.add(label6);
+        ButtonGroup group6 = new ButtonGroup();
+        group6.add(choice11);
+        group6.add(choice12);
+        container.add(choice11);
+        choice11.setSelected(true);
+        container.add(choice12);
+
+        container.add(label7);
+        ButtonGroup group7 = new ButtonGroup();
+        group7.add(choice13);
+        group7.add(choice14);
+        container.add(choice13);
+        choice13.setSelected(true);
+        container.add(choice14);
+        //Добавляем кнопку которая будет выводить итоговый список
+        button.addActionListener(new ButtonEventListener());
+        container.add(button);
+    }
+    //Для того чтобы кнопка что-либо делала, то мы создадим класс который описывает это действие
+    class ButtonEventListener implements ActionListener {//Класс реализует новый интерфейс который описан ниже
+        public void actionPerformed (ActionEvent a) {
+            String message = "";//Будем выводить строки с самим продуктом и нашим итоговым выбором
+            message += "Итоги:\n";
+            message += "Хлеб             " + (choice1.isSelected() ? "Купил" : "Не купил\n");
+            message += "\nЯйца             " + (choice3.isSelected() ? "Купил" : "Не купил\n");
+            message += "\nМолоко         " + (choice5.isSelected() ? "Купил" : " Не купил\n");
+            message += "\nМука              " + (choice7.isSelected() ? "Купил" : "Не купил\n");
+            message += "\nЧай                " + (choice9.isSelected() ? "Купил" : "Не купил\n");
+            message += "\nПельмени    " + (choice11.isSelected() ? "Купил" : "Не купил\n");
+            message += "\nКола              " + (choice13.isSelected() ? "Купил" : "Не купил\n");
+            JOptionPane.showMessageDialog(null,message,"Список продуктов",JOptionPane.PLAIN_MESSAGE);
+        }
+    }
+}
+
