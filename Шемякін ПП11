@@ -1,0 +1,108 @@
+Ето Main:
+
+package com.company;
+
+public class Main {
+
+    public static void main(String[] args) {
+        EazyGUI app=new EazyGUI();
+        app.setVisible(true);
+    }
+}
+
+
+Ето Основная часть:
+
+package com.company;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.plaf.basic.BasicOptionPaneUI;
+
+public class EazyGUI extends JFrame{
+    private JRadioButton classic = new JRadioButton ("Класична (20)");
+    private JRadioButton calzone = new JRadioButton ("Кальцоне (20)");
+    private JLabel label = new JLabel("Обирай:");
+    private JCheckBox button1 = new JCheckBox("Ковбаса (+5)");
+    private JCheckBox button2 = new JCheckBox("Кукурудза (+5)");
+    private JCheckBox button3 = new JCheckBox("додатковий сир (+5)");
+    private JCheckBox button4 = new JCheckBox("Ананас (+5)");
+    private JCheckBox button5 = new JCheckBox("Анчоуси (+5)");
+    private JCheckBox button6 = new JCheckBox("Смажена картопля (+5)");
+    private JCheckBox button7 = new JCheckBox("Бекон (+5)");
+    private JCheckBox button8 = new JCheckBox("Мисливські (+5)");
+    private JCheckBox button9 = new JCheckBox("Курянина (+5)");
+    private JButton button10 = new JButton("Завершити");
+
+    public EazyGUI () {
+        super("Замовляй піцу");
+        this.setBounds(100, 100, 500, 200);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLayout(new GridLayout(5,2,2,2));
+        button10.setSize(20,20);
+        button10.setForeground(Color.BLUE);
+
+
+        Container container = this.getContentPane();
+        container.add(label);
+
+        ButtonGroup group =new ButtonGroup();
+        group.add(classic);
+        group.add(calzone);
+        container.add(classic);
+        classic.setSelected(true);
+        container.add(calzone);
+        button10.addActionListener(new ButtonEventListener());
+        container.add(button1);
+        container.add(button2);
+        container.add(button3);
+        container.add(button4);
+        container.add(button5);
+        container.add(button6);
+        container.add(button7);
+        container.add(button8);
+        container.add(button9);
+        container.add(button10);
+    }
+    class ButtonEventListener implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            int p=0;
+            String message= "";
+            message +=(classic.isSelected() ? "Класична" : "Кальцоне") +"\n";
+            message +=( button1.isSelected() ? "Ковбаса \n" : "");
+            if (button1.isSelected())
+                p++;
+            message +=( button2.isSelected() ? "Кукурудза \n" : "");
+            if (button2.isSelected())
+                p++;
+            message +=( button3.isSelected() ? "додатковий сир \n" : "");
+            if (button3.isSelected())
+                p++;
+            message +=( button4.isSelected() ? "Ананас \n" : "");
+            if (button4.isSelected())
+                p++;
+            message +=( button5.isSelected() ? "Анчоуси \n" : "");
+            if (button5.isSelected())
+                p++;
+            message +=( button6.isSelected() ? "Смажена картопля \n" : "");
+            if (button6.isSelected())
+                p++;
+            message +=( button7.isSelected() ? "Бекон \n" : "");
+            if (button7.isSelected())
+                p++;
+            message +=( button8.isSelected() ? "Мисливські ковбаски \n" : "");
+            if (button8.isSelected())
+                p++;
+            message +=( button9.isSelected() ? "Курянина \n" : "");
+            if (button9.isSelected())
+                p++;
+            int S=20+5*p;
+            double q=Math.round(Math.random()*100);
+            message+="З вас:"+S+"\n";
+            message+="Ваше замовлення №"+ q+"\n";
+            message+="Очікуйте ваш номер на табло";
+            JOptionPane.showMessageDialog(null, message);
+        }
+    }
+}
